@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Youtubesque</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
-    <center><img src="assets/logo.png" alt="logo"></center>
+
+<div class="container">
+    <img src="/assets/logo.png" alt="Logo du jeu" class="logo">
+    <h1 class="tagline">Bienvenue sur Youtubesque, le quiz de l'age d'or de YouTube</h1>
+    <div class="form-group">
+        <input type="text" placeholder="Votre pseudo" id="pseudo">
+        <button type="button" id="playButton">Jouer</button>
+    </div>
+    <div class="alert" id="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <strong>Erreur</strong> Veuillez entrer un pseudo pour jouer !
+    </div>
+</div>
+
 </body>
+
+<script src="js/main.js"></script>
+
 </html>
