@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #06063c;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+.logo {
+    width: 800px;
+    height: auto;
+}
+.tagline {
+    margin-bottom: 40px;
+    color: #ffffff;
+}

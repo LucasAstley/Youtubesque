@@ -1,7 +1,9 @@
 //Variables
 var questionNumber= 0;
+var pointsPlayer= 0;
 const questionImg= document.getElementById('questionImg');
 const questionTxt= document.getElementById('questionTxt');
+const questionAnswer= document.getElementById('questionAnswer');
 const questions=[
     "Quelle est la capitale de la France ?",
     "Quelle est la capitale de l'Espagne ?",
@@ -14,8 +16,14 @@ const images=[
     "assets/questions/3.png",
     "assets/questions/4.png"
 ]
+const answers = [
+    "paris",
+    "madrid",
+    "rome",
+    "berlin"
+]
 
-//Fonctions
+//Listener
 document.addEventListener('DOMContentLoaded', (event) => {
     const playerPseudo = sessionStorage.getItem("playerPseudo");
     if (playerPseudo === null || playerPseudo === '') {
@@ -26,17 +34,44 @@ document.addEventListener('DOMContentLoaded', (event) => {
     showQuestion();
 });
 
-//listener
 document.getElementById('sendButton').addEventListener('click', function() {
-    nextQuestion();
+    checkAnswer();
     showQuestion();
 });
 
+document.getElementById('questionAnswer').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        checkAnswer();
+        showQuestion();
+    }
+});
+
+//Fonctions
+function checkAnswer() {
+    let answer= questionAnswer.value;
+    answer = answer.toLowerCase();
+    answer = answer.replace(/\s/g, '');
+    if (answer === answers[questionNumber]) {
+        pointsPlayer++;
+    }
+    nextQuestion();
+}
+
 function nextQuestion() {
-    questionNumber++;
+    if (questionNumber>=questions.length-1) {
+        endGame();
+    } else {
+        questionNumber++;
+    }
 }
 
 function showQuestion() {
     questionTxt.innerHTML = questions[questionNumber];
     questionImg.src = images[questionNumber];
+    questionAnswer.value = '';
+}
+
+function endGame() {
+    sessionStorage.setItem("playerPoints", pointsPlayer);
+    window.location.href = 'end.html';
 }
